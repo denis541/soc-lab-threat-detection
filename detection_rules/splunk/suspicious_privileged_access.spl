@@ -1,0 +1,7 @@
+index=windows sourcetype="WinEventLog:Security" EventCode=4624
+| lookup admin_users.csv user OUTPUT is_admin
+| where is_admin=1
+| where Logon_Type=3 OR Logon_Type=10
+| stats count as login_count by user, src_ip
+| where login_count > 3
+| sort - login_count
