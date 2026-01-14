@@ -1,3 +1,8 @@
+# save it to a file and remember the location
+# go to terminal cd to the file location 
+# install python on your computer 
+# run the script using <.\filename.py>
+# search the logs in splunk in the index you forwaded the logs to 
 import time
 from datetime import datetime
 
