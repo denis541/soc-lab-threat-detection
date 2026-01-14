@@ -1,0 +1,6 @@
+index=linux sourcetype=syslog "Failed password"
+| rex "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
+| rex "for (?<user>\S+)"
+| stats count as failed_attempts by src_ip, user
+| where failed_attempts >= 5
+| sort - failed_attempts
