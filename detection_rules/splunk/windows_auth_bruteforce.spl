@@ -1,0 +1,5 @@
+index=windows sourcetype="WinEventLog:Security" EventCode=4625
+| where Logon_Type=3 OR Logon_Type=10
+| stats count as failed_attempts by src_ip, user
+| where failed_attempts >= 7
+| sort - failed_attempts
